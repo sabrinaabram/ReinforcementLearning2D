@@ -17,10 +17,16 @@ function [b,natOptS,natOptF] = costLandscapes(n)
     S = round(100*S)/100; % this is nec because some values are not exactly at certain speeds
     
     % fit polynomial
-    % p00 + p10*x + p01*y + p20*x^2 + p11*x*y + p02*y^2
+    % x = speed, y = frequency
     sfspfit = fit([S(:),F(:)],E(:),'p00 + p10*x + p01*y + p20*x^2 + p02*y^2');
     if 1
+        figure(1)
         plot(sfspfit,[S(:),F(:)],E(:))
+        figure(3)
+        s = S(1,:);
+        f = 96*ones(length(s),1);
+        e = feval(sfspfit,[s',f]);
+        plot(s,e,'b')
     end
 
     % natural objective function

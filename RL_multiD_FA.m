@@ -18,7 +18,7 @@ n = 2;
 % Below is Jess' simple RL algorithm implemented in a multidimensional learning space
 
 % execution noise (action variabilty)
-exec_noise=1; % spm
+exec_noise=1; % think about this for future speed and freq because absolute value
 
 % measurement noise (cost variabilty)
 meas_noise=0.02;
@@ -81,7 +81,7 @@ for r=1:repeats
         if sNat < 600
             action(sNat,:) = [speedHold freqHold] + exec_noise*randn(1,length(a));
         else
-            action(sNat,:) = a + exec_noise*randn(1,length(a)); % a random new action centered about the estimated optimal value
+            action(sNat,:) = a + exec_noise*randn(1,length(a)); % a new action centered about the estimated optimal value
         end
         % get 1 reward
         reward = sum((b(2,:).*action(sNat,:) + b(3,:).*(action(sNat,:)).^2),2) + (meas_noise*randn); % the resulting cost with some noise
