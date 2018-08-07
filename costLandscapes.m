@@ -19,7 +19,7 @@ function [b,natOptS,natOptF] = costLandscapes(n)
     % fit polynomial
     % x = speed, y = frequency
     sfspfit = fit([S(:),F(:)],E(:),'p00 + p10*x + p01*y + p20*x^2 + p02*y^2');
-    if 1
+    if 0
         figure(1)
         plot(sfspfit,[S(:),F(:)],E(:))
         figure(3)
